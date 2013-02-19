@@ -1,5 +1,6 @@
 package net.peerindex.challenge.webcrawler;
 
+
 /**
  * Run crawl from command line.
  */
@@ -24,7 +25,12 @@ public class RunCrawl {
      */
     public static void main(String[] args) {
 
-        new RunCrawl();
+        //new RunCrawl();
+    	RunHTMLAnalizer rha = new RunHTMLAnalizer();
+    	rha.run();
+    	rha.shutdown();
+        
+		
 
     }
 

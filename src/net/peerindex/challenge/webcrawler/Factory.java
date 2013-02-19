@@ -13,11 +13,15 @@ public class Factory {
     }
 
     public static WebCrawler createWebCrawler() {
-        return new MyWebCrawler(50);
+        return new MyWebCrawler(Integer.parseInt(Config.getProperty("webcrawler_num_threads")));
     }
 
     public static Iterator<URL> createURLIterator() {
-        return new URLStream(167);
+        return new URLStream(Config.getProperty("webcrawler_input_file_path"));
+    }
+    
+    public static RSSCrawler createRSSCrawler(){
+    	return new MyRSSCrawler(Config.getProperty("RSSFeeds_Output_Folder"), Integer.parseInt(Config.getProperty("RSSCrawler_num_threads")));
     }
 
 }

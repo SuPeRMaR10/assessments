@@ -1,5 +1,8 @@
 package net.peerindex.challenge.webcrawler;
 
+import java.util.AbstractList;
+import java.util.Map.Entry;
+
 /**
  * A store of String values retrievable by a String key.
  * 
@@ -44,5 +47,7 @@ public interface KeyValueStore {
      * @throws IllegalArgumentException if key is null.
      */
     public boolean delete(String key);
+
+	public Iterable<Entry<String, String>> entrySet();
     
 }

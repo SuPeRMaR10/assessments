@@ -1,6 +1,9 @@
 package net.peerindex.challenge.webcrawler;
 
+import java.util.AbstractList;
 import java.util.Hashtable;
+import java.util.Map.Entry;
+import java.util.Set;
 
 public class MyKeyValueStore implements KeyValueStore{
 
@@ -42,6 +45,11 @@ public class MyKeyValueStore implements KeyValueStore{
 		else{
 			return null != _hashtable.remove(key);
 		}
+	}
+
+	@Override
+	public Set<Entry<String, String>> entrySet() {
+		return _hashtable.entrySet();
 	}
 	
 

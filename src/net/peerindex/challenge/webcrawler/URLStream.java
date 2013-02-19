@@ -17,18 +17,31 @@ public class URLStream implements Iterator<URL> {
 	private FileInputStream fis;
 	private String _tempstring;
 	private BufferedReader bufferedReader;
-	
-    private final String _path = "./resources";
-    private final String _filename_part = "part-m-";
-    private int _numberfiletocrawl = 1;
+    private int _numberfiletocrawl=1;
     
-    public URLStream(int numberfilestocrawl) {
-    	_numberfiletocrawl = numberfilestocrawl;
+    public URLStream(String path) {
     	_listOfFiles = new File[_numberfiletocrawl];
 		
 		for(int i = 0 ; i<_numberfiletocrawl ; i++)
-			_listOfFiles[i] = new File(_path + "/" + _filename_part + String.format("%05d",i));
+			_listOfFiles[i] = new File(path + String.format("%05d",i));
 		
+		
+		try {
+			fis = new FileInputStream(_listOfFiles[_currentfile]);
+			bufferedReader = new BufferedReader(new InputStreamReader(fis, "UTF-8"));
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println(_listOfFiles.length);
+	}
+
+	public URLStream(File file) {
+    	_listOfFiles = new File[1];
+		_listOfFiles[0] = file;
 		
 		try {
 			fis = new FileInputStream(_listOfFiles[_currentfile]);
@@ -84,9 +97,9 @@ public class URLStream implements Iterator<URL> {
 	@Override
 	public URL next() {
 		try {
-			String[] splitArray = _tempstring.split("\"");
+			//String[] splitArray = _tempstring.split("\"");
 	   		//System.out.println(splitArray[6]);     	
-			return new URL(splitArray[3]);
+			return new URL(_tempstring);
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
