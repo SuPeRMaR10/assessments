@@ -13,5 +13,6 @@
 	<classpathentry kind="lib" path="resources/libs/rome/rome-1.0.jar"/>
 	<classpathentry kind="lib" path="resources/libs/jsoup-1.7.2.jar"/>
 	<classpathentry kind="lib" path="resources/libs/mongo-java-driver-2.9.3.jar"/>
+	<classpathentry kind="lib" path="resources/libs/morphia-0.99.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
