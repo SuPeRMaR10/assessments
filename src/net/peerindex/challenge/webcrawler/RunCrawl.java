@@ -10,7 +10,7 @@ public class RunCrawl {
 
         WebCrawler crawler = Factory.createWebCrawler();
         crawler.setKeyValueStore(Factory.createKeyValueStore());
-        crawler.setURLStream(Factory.createURLIterator());
+        crawler.setURLStream(Factory.createNewsIterator());
 
         crawler.initialise();
         crawler.execute();
@@ -25,10 +25,10 @@ public class RunCrawl {
      */
     public static void main(String[] args) {
 
-        //new RunCrawl();
-    	RunHTMLAnalizer rha = new RunHTMLAnalizer();
-    	rha.run();
-    	rha.shutdown();
+        new RunCrawl();
+    	//RunHTMLAnalizer rha = new RunHTMLAnalizer();
+    	//rha.run();
+    	//rha.shutdown();
         
 		
 

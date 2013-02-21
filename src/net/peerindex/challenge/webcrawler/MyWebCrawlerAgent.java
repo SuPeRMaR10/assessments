@@ -12,9 +12,9 @@ public class MyWebCrawlerAgent implements Runnable {
 	private KeyValueStore _kvstore;
 	private Thread _t;
 	private String _agentname; 
-	private Iterator<URL> _iter;
+	private Iterator<RSSItem> _iter;
 	
-	public MyWebCrawlerAgent(KeyValueStore kvstore, Iterator<URL> _urlstream, String agentname){
+	public MyWebCrawlerAgent(KeyValueStore kvstore, Iterator<RSSItem> _urlstream, String agentname){
 		_iter = _urlstream;
 		_kvstore = kvstore;
 		_agentname = agentname;
@@ -48,7 +48,7 @@ public class MyWebCrawlerAgent implements Runnable {
     }
 	
 	public void run() {
-		URL url;
+		RSSItem url;
 		int i=0;
 		
 		while (_iter.hasNext()) {
@@ -56,28 +56,17 @@ public class MyWebCrawlerAgent implements Runnable {
 			url = _iter.next();
 			if(!_kvstore.contains(url.toString())){
 				try {
-					System.out.println("\nAgent " + _agentname + " --> " + url.toString());
+					System.out.println("\nAgent " + _agentname + " --> " + url.getTitle() + ":" + url.getLink());
 					_kvstore.put(url.toString(), "");
-					this.saveUrl(new File(Config.getProperty("webcrawler_output_file_path") + "/" + Config.getProperty("webcrawler_output_filename_part") + "_" + _agentname + "_" + String.format("%05d",i++)+".html"), url);
+					this.saveUrl(new File(Config.getProperty("webcrawler_output_file_path") + "/" + Config.getProperty("webcrawler_output_filename_part") + "_" + _agentname + "_" + String.format("%05d",i++)+".html"), new URL(url.getLink()));
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				/*
-				try {
-					file = extractor.getURLContent(url);
-				
-					//System.out.println(file);
-					for(String newurl : extractor.getURLReferences(file))
-						System.out.println(url.toString() + " --> " + newurl);
-					//_kvstore.put(url.toString(), extractor.getNews(url));
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}*/
 				
 			}
 		}
+	    System.out.println("Agent " + _agentname + " is dead ");
 	}
 	
 	public void startCrawling() throws InterruptedException{

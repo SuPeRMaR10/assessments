@@ -1,6 +1,5 @@
 package net.peerindex.challenge.webcrawler;
 
-import java.net.URL;
 import java.util.Iterator;
 
 /**
@@ -14,7 +13,7 @@ public interface WebCrawler {
 
     public void setKeyValueStore(KeyValueStore store);
 
-    public void setURLStream(Iterator<URL> iterator);
+    public void setURLStream(Iterator<RSSItem> iterator);
 
     public void initialise();
 

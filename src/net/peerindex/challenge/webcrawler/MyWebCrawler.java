@@ -16,7 +16,7 @@ import java.util.Map.Entry;
 public class MyWebCrawler implements WebCrawler{
 
 	private KeyValueStore _store;
-	private Iterator<URL> _urlstream;
+	private Iterator<RSSItem> _urlstream;
 	
 	private int _numberofagents;
 	private ArrayList<MyWebCrawlerAgent> _agentlist;
@@ -29,7 +29,7 @@ public class MyWebCrawler implements WebCrawler{
     	_store = store;
     }
 
-    public void setURLStream(Iterator<URL> iterator){
+    public void setURLStream(Iterator<RSSItem> iterator){
     	_urlstream = iterator;
     }
 
