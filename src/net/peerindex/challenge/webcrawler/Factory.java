@@ -21,7 +21,7 @@ public class Factory {
     }
     
     public static RSSCrawler createRSSCrawler(){
-    	return new MyRSSCrawler(Config.getProperty("webcrawler_output_file_path"), Integer.parseInt(Config.getProperty("RSSCrawler_num_threads")));
+    	return new MyRSSCrawler(Integer.parseInt(Config.getProperty("RSSCrawler_num_threads")));
     }
 
 	public static Iterator<RSSItem> createNewsIterator() {
